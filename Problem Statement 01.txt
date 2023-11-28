@@ -1,0 +1,48 @@
+Problem Statement 01 :
+
+
+Working with HDFS Commands
+
+1. Create a folder in HDFS by name “dir01” and move input1.txt , input2.txt and input3.txt into
+/dir01.
+
+Ans: hdfs dfs -mkdir /user/khushboouser1/dir01
+hdfs dfs -ls
+
+2. List only the file names present in “/dir01”
+
+Ans: hdfs dfs -put input1.txt input2.txt input3.txt /user/khushboouser1/dir01/
+hdfs dfs -ls /user/khushboouser1/dir01/
+
+
+3. Change the replication factor for the content present in directory “/dir01” to 5 and display
+the replication factor for the files present in “/dir01”.
+
+Ans:Change replication factor for dir01 content to 5
+hdfs dfs -setrep 5 /user/khushboouser1/dir01/*
+
+
+4. Create a folder in HDFS by name “scenario01” and create directory “level01” inside
+“scenario01” directory and create another directory “level02” inside directory “level01”.
+Once the required directories are created copy input1.txt to scenario01, input2.txt to level01
+and input3.txt to level02 and finally recursively print only the file names present in
+directory scenario01
+/user/naveen/scenario01/input1.txt
+/user/naveen/scenario01/level01
+/user/naveen/scenario01/level01/input1.txt
+/user/naveen/scenario01/level01/level02
+/user/naveen/scenario01/level02
+/user/naveen/scenario01/level03
+
+
+Create scenario01 and level01/level02 directories
+hdfs dfs -mkdir -p /user/khushboouser1/scenario01/level01/level02
+ 
+# Copy files to respective directories
+hdfs dfs -put input1.txt /user/khushboouser1/scenario01/
+hdfs dfs -put input2.txt /user/khushboouser1/scenario01/level01/
+hdfs dfs -put input3.txt /user/khushboouser1/scenario01/level01/level02/
+ 
+# Recursively print file names in scenario01
+ 
+hdfs dfs -ls  /user/khushboouser1/scenario01/
